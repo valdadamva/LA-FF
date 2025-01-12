@@ -17,8 +17,6 @@ GameObject:
   - component: {fileID: 6801856902835995096}
   - component: {fileID: 8332461325777645728}
   - component: {fileID: 5978026448287227154}
-  - component: {fileID: 2070906516251890619}
-  - component: {fileID: 9127960721175556630}
   - component: {fileID: -3712661880755841307}
   - component: {fileID: -7236858402454234976}
   m_Layer: 0
@@ -242,37 +240,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  moveSpeed: 20
+  moveSpeed: 100
   rotationSpeed: 400
---- !u!114 &2070906516251890619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6834577809716727846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3994889fb4c7f5f4c92f9ca63251f485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 4233413164149015358}
---- !u!114 &9127960721175556630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6834577809716727846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d09f34c66b5d05e468a4b476ebcc03f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  playerCamera: {fileID: -3712661880755841307}
 --- !u!20 &-3712661880755841307
 Camera:
   m_ObjectHideFlags: 0
@@ -280,7 +249,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6834577809716727846}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -331,7 +300,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6834577809716727846}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
