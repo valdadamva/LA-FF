@@ -17,4 +17,17 @@ public class PlayerCamera : NetworkBehaviour
             playerCamera.gameObject.SetActive(false); // Отключаем камеру для других игроков
         }
     }
+ // Этот метод вызывается только для локального игрока
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+
+        // Убедимся, что камера активируется только для локального игрока
+        if (playerCamera != null)
+        {
+            playerCamera.gameObject.SetActive(true); // Включаем камеру
+        }
+    }
 }
+
+
