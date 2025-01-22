@@ -1404,6 +1404,10 @@ PrefabInstance:
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 2036511158}
+    - target: {fileID: 4694064991540301848, guid: f70a14b02bb8e1d469bed44d95a7051a, type: 3}
+      propertyPath: groundCheckRadius
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5138285071368133077, guid: f70a14b02bb8e1d469bed44d95a7051a, type: 3}
       propertyPath: m_LocalScale.z
       value: 0
