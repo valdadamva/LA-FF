@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiPlay.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Terraria.unity
-    guid: f9b1d789aeb2db941be6e4a862d52c1d
-  - enabled: 1
-    path: Assets/Scenes/solo3D.unity
-    guid: ca2715b17a80988408c355e98b7a6e57
-  - enabled: 1
     path: Assets/Scenes/Bat_A.unity
     guid: d0862f012479e4647995c24268e06dea
   m_configObjects:
