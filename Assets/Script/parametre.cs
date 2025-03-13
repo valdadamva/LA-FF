@@ -52,7 +52,7 @@ public class PlayerInfo : NetworkBehaviour
         infoCanvas.SetActive(isCanvasVisible);
     }
 
-    // === Команды для сервера ===
+    // === Команды для сервера ===	
     [Command]
     void CmdSetName(string newName) { playerName = newName; }
     [Command]
