@@ -2669,7 +2669,6 @@ GameObject:
   - component: {fileID: 1563915900230259603}
   - component: {fileID: 5192820176948062866}
   - component: {fileID: 1824274410871428251}
-  - component: {fileID: 350230648916443672}
   m_Layer: 0
   m_Name: 'Perso la ff 3 '
   m_TagString: Player
@@ -2880,30 +2879,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  moveSpeed: 200
+  moveSpeed: 50
   rotationSpeed: 700
---- !u!114 &350230648916443672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5935880403444929326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77fa39f04a922c84fad48342f46af76e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  infoCanvas: {fileID: 0}
-  valueSlider: {fileID: 0}
-  valueText: {fileID: 0}
-  nameInput: {fileID: 0}
-  hobbyInput: {fileID: 0}
-  ageInput: {fileID: 0}
-  genderInput: {fileID: 0}
 --- !u!1 &5951941656313928553
 GameObject:
   m_ObjectHideFlags: 0
