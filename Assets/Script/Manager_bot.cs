@@ -20,7 +20,7 @@ public class BotMover : MonoBehaviour
 
         // Выбираем первую цель
         SetNewTarget();
-    }
+    }    
 
     void Update()
     {
