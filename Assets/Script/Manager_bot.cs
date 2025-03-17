@@ -30,7 +30,7 @@ public class BotMover : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, moveSpeed * Time.deltaTime);
 
         // Проверяем, достигли ли цели
-        if (Vector3.Distance(transform.position, currentTarget.position) < 0.1f)
+        if (Vector3.Distance(transform.position, currentTarget.position) < 1f)
         {
             SetNewTarget(); // Переходим к новой цели
         }
