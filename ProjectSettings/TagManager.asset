@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - sole
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - SOLE
   - Water
   - UI
   - 
