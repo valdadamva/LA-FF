@@ -71,12 +71,14 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (_isGrounded)
-                CmdJump();
-            else
+           // if (_isGrounded)
+        	CmdJump();
+           
+			/* else
             {
                 Debug.LogError("Player not jumped!");
             }
+*/
         }
        
     }
@@ -90,7 +92,7 @@ public class PlayerMovement : NetworkBehaviour
     [Command]
     private void CmdJump()
     {
-        _isGrounded = false;
+        //_isGrounded = false;
         RpcJump();
     }
 
