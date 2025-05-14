@@ -1,8 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
     public float JumpForce;
+	public float tim=0;
+	 public TMP_Text survivalTimeText;
+	private bool isGameOver = false;
 
     [SerializeField]
     bool isGrounded = false;
@@ -16,6 +21,8 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
+		if (!isGameOver)
+			tim+=Time.deltaTime;
         if(Input.GetKeyDown(KeyCode.Space))
         {
             if(isGrounded)
@@ -37,4 +44,23 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+
+	public void EndGame()
+    {
+        isGameOver = true;
+        Time.timeScale = 0f;
+
+        if (survivalTimeText != null)
+        {
+            survivalTimeText.gameObject.SetActive(true);
+			float k= tim/3;
+            int y = (int)k;
+			if (y>20)
+				y=20;
+			string i=y.ToString();
+            survivalTimeText.text = "t as note: "+i+"/20";
+        }
+    }
+ 
+	
 }

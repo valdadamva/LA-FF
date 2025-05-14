@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class SpikeScript : MonoBehaviour
 {
-    [Header("References")]
-    public SpikeGenerator spikeGenerator; // Ссылка на генератор
+	public PlayerScript ps;
 
+    [Header("References")]
+    public SpikeGenerator spikeGenerator; 
+   
     private void Update()
     {
         // Движение шипа влево
@@ -14,7 +16,7 @@ public class SpikeScript : MonoBehaviour
         }
     }
 
-    // Правильная сигнатура метода для 2D триггера
+    
     private void OnTriggerEnter(Collider collision)
     {
         if (collision == null)
@@ -23,13 +25,15 @@ public class SpikeScript : MonoBehaviour
             return;
         }
         
-        if (collision.CompareTag("ABC"))
-        {Debug.Log("ABC");
-            if (spikeGenerator != null)
-            {
-                Debug.Log("ABC_true");
-                spikeGenerator.GenerateSpike();
-            }
+		if (collision.CompareTag("sole"))
+		{   
+                 Destroy(this.gameObject);  
+        }
+        if(collision.gameObject.CompareTag("enemie"))
+        {
+            Debug.Log("fin");
+			ps = FindObjectOfType<PlayerScript>();
+            ps.EndGame();
         }
     }
 }
