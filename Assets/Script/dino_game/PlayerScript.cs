@@ -58,7 +58,7 @@ public class PlayerScript : MonoBehaviour
 			if (y>20)
 				y=20;
 			string i=y.ToString();
-            survivalTimeText.text = "t as note: "+i+"/20";
+            survivalTimeText.text = "Ta note: "+i+"/20";
         }
     }
  
