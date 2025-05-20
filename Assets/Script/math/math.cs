@@ -9,6 +9,8 @@ public class Game15Puzzle3D : MonoBehaviour
     public float tileSize = 1f;        // Размер куба
     public float spacing = 0.1f;       // Расстояние между кубами
 
+    public float time = 0;
+
     private int[,] grid = new int[4, 4];
     private GameObject[,] tileObjects = new GameObject[4, 4];
     private Vector2Int emptyPos;
@@ -29,7 +31,7 @@ public class Game15Puzzle3D : MonoBehaviour
         }
 
         InitializeGrid();
-        CreateVisualTiles();
+        CreateVisualTiles(); 
         ShuffleTiles();
     }
 
@@ -60,7 +62,7 @@ public class Game15Puzzle3D : MonoBehaviour
                 
                 // Позиционируем
                 tile.transform.localPosition = new Vector3(
-                    x * (tileSize + spacing),
+                    (3-x) * (tileSize + spacing),
                     0,
                     y * (tileSize + spacing)
                 );
@@ -102,6 +104,7 @@ public class Game15Puzzle3D : MonoBehaviour
     void Update()
     {
         HandleInput();
+        time+=Time.deltaTime;
     }
 
     void HandleInput()
@@ -156,7 +159,9 @@ public class Game15Puzzle3D : MonoBehaviour
         // Если после перемешивания получилась нерешаемая комбинация - делаем ещё ход
         if (!IsSolvable())
         {
+            Debug.Log("невозможно");
             TryMove(Vector2Int.right); // Простое исправление
+            Debug.Log("теперь норм");
         }
     }
 
@@ -183,22 +188,31 @@ public class Game15Puzzle3D : MonoBehaviour
             }
         }
 
-        // Проверяем условие четности
-        int emptyRowFromBottom = 4 - emptyPos.y;
+        // Строка с пустым местом снизу (1–4)
+        int emptyRowFromBottom = emptyPos.y + 1;
+
+        // Условие решаемости для 4×4
         return (inversions + emptyRowFromBottom) % 2 == 0;
     }
+
 
     void CheckWin()
     {
         int num = 1;
         for (int y = 0; y < 4; y++)
         {
-            for (int x = 0; x < 4; x++)
+            for (int x = 3; x >= 0; x--)
             {
-                if (grid[x, y] != num % 16) return;
+                if (grid[3-x, y] != num % 16)
+                {
+                    Debug.Log("x "+x.ToString()+" , y " +y.ToString()+" is wrong!  "+num.ToString()+" !=grid  "+(grid[x, y]).ToString());
+                    return;
+                }
+
                 num++;
             }
         }
-        Debug.Log("Победа!");
+        Debug.Log("Победа! "+ time.ToString());
+        
     }
 }
