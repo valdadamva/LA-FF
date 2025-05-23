@@ -27,7 +27,7 @@ public class Snake : MonoBehaviour
         public GameObject ob;
     }
 
-    void Start()
+    public void Start()
     {
         Initialize();
         StartCoroutine(MoveRoutine());

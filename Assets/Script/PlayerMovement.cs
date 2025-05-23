@@ -2,7 +2,7 @@ using UnityEngine;
 using Mirror;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Rigidbody))] // Гарантирует наличие Rigidbody
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : NetworkBehaviour
 {
     [Header("Movement Settings")]
@@ -45,15 +45,16 @@ public class PlayerMovement : NetworkBehaviour
             enabled = false;
             return;
         }
-        
+
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
+
     void Update()
     {
         if (!isLocalPlayer) return;
-
         if (!movementEnabled) return;
+
         HandleRunningInput();
         HandleJumpInput();
     }
@@ -71,16 +72,8 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           // if (_isGrounded)
-        	CmdJump();
-           
-			/* else
-            {
-                Debug.LogError("Player not jumped!");
-            }
-*/
+            CmdJump();
         }
-       
     }
 
     [Command]
@@ -92,7 +85,6 @@ public class PlayerMovement : NetworkBehaviour
     [Command]
     private void CmdJump()
     {
-        //_isGrounded = false;
         RpcJump();
     }
 
@@ -109,7 +101,7 @@ public class PlayerMovement : NetworkBehaviour
     {
         float sphereRadius = 0.4f;
         float checkDistance = 0.3f;
-    
+
         _isGrounded = Physics.SphereCast(
             transform.position + Vector3.up * 0.1f,
             sphereRadius,
@@ -119,28 +111,28 @@ public class PlayerMovement : NetworkBehaviour
             groundLayer
         );
 
-        // Визуализация луча
         Debug.DrawRay(transform.position, Vector3.down * (checkDistance + 0.1f), 
             _isGrounded ? Color.green : Color.red);
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
         if (!Application.isPlaying) return;
-        
+
         float sphereRadius = 0.4f;
         float checkDistance = 0.3f;
         Vector3 sphereBottom = transform.position + Vector3.down * (checkDistance - sphereRadius);
-        
+
         Gizmos.color = _isGrounded ? Color.green : Color.red;
         Gizmos.DrawWireSphere(sphereBottom, sphereRadius);
     }
-    #endif
+#endif
+
     void FixedUpdate()
     {
-        CheckGrounded(); // Постоянная проверка земли
-        
+        CheckGrounded();
+
         if (isLocalPlayer)
         {
             HandleMovement();
@@ -157,7 +149,7 @@ public class PlayerMovement : NetworkBehaviour
 
         float speed = GetCurrentSpeed();
         Vector2 input = GetMovementInput();
-        
+
         Vector3 velocity = transform.TransformDirection(new Vector3(
             input.x * speed,
             _rigidbody.linearVelocity.y,
@@ -216,12 +208,10 @@ public class PlayerMovement : NetworkBehaviour
 
         if (!isEnabled && _rigidbody != null)
         {
-            // Обнуляем горизонтальную скорость при блокировке движения
             _rigidbody.linearVelocity = new Vector3(0, _rigidbody.linearVelocity.y, 0);
         }
     }
 
-    // Network sync hooks
     private void OnRunningChanged(bool oldValue, bool newValue) => _isRunning = newValue;
     private void OnVelocityChanged(Vector3 oldValue, Vector3 newValue) => _syncVelocity = newValue;
     private void OnRotationChanged(Quaternion oldValue, Quaternion newValue) => _syncRotation = newValue;
