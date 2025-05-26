@@ -522,7 +522,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: e70fec32ec22a6e488ab8ff3ca0e478e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
   jumpForce: 20
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   groundCheckDistance: 1
 --- !u!114 &2699357765365765545
 MonoBehaviour:
