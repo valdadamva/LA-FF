@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
   public static bool GameisPaused = false;
   public GameObject pauseMenuUI;
+  [SerializeField] private FirstPersonLook cameraLook;
 
   void Start()
   {
@@ -34,12 +35,14 @@ public class PauseMenu : MonoBehaviour
     pauseMenuUI.SetActive(false);
     Time.timeScale = 1f;
     GameisPaused = false;
+    cameraLook.SetCursorState(false);
   }
   public void Pause()
   {
     pauseMenuUI.SetActive(true);
     Time.timeScale = 0f;
     GameisPaused = true;
+    cameraLook.SetCursorState(true);
   }
 
   public void LoadMenu()
