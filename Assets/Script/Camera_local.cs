@@ -5,6 +5,14 @@ public class PlayerCameraController : NetworkBehaviour
 {
     public GameObject playerCamera; // Ссылка на камеру игрока
 
+    
+    
+    
+    void Awake()
+    {
+        if (playerCamera == null)
+            playerCamera = transform.Find("Camera_LLL").gameObject; // Заменить "CameraName" на реальное имя камеры
+    }
     void Start()
     {
         if (isLocalPlayer)
@@ -15,6 +23,22 @@ public class PlayerCameraController : NetworkBehaviour
         {
             playerCamera.SetActive(false); // Отключаем камеру для остальных игроков
         }
+    }
+    
+    public void StartMiniGame()
+    {
+
+        if (playerCamera != null)
+            playerCamera.SetActive(false);
+
+      
+    }
+
+    public void StopMiniGame()
+    {
+
+        if (playerCamera != null)
+            playerCamera.SetActive(true);
     }
 }
 
