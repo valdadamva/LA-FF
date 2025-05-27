@@ -1,66 +1,94 @@
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Collections;
 using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
     public float JumpForce;
-	public float tim=0;
-	 public TMP_Text survivalTimeText;
-	private bool isGameOver = false;
+    public TMP_Text survivalTimeText;
+    public SpikeGenerator spikeGenerator;  // ссылка на генератор шипов
 
-    [SerializeField]
-    bool isGrounded = false;
+    private float time = 0f;
+    private bool isGameOver = false;
+    private bool isGrounded = false;
 
-    Rigidbody RB;
+    private Rigidbody RB;
+    private Vector3 startPosition;
 
-    private void Awake()
+    void Awake()
     {
         RB = GetComponent<Rigidbody>();
+        startPosition = transform.position;
     }
 
     void Update()
     {
-		if (!isGameOver)
-			tim+=Time.deltaTime;
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (!isGameOver)
         {
-            if(isGrounded)
+            time += Time.deltaTime;
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
-                RB.AddForce(Vector2.up * JumpForce);
+                RB.linearVelocity = Vector3.zero;
+                RB.AddForce(Vector2.up * JumpForce, ForceMode.Impulse);
                 isGrounded = false;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                RestartMiniGame();
             }
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("sole"))
+        if (collision.gameObject.CompareTag("sole"))
         {
-            Debug.Log("Collided");
-            if(!isGrounded )
-            {
-                isGrounded = true;
-            }
+            isGrounded = true;
         }
     }
 
-	public void EndGame()
+    public void EndGame()
     {
         isGameOver = true;
-        Time.timeScale = 0f;
 
         if (survivalTimeText != null)
         {
             survivalTimeText.gameObject.SetActive(true);
-			float k= tim/3;
-            int y = (int)k;
-			if (y>20)
-				y=20;
-			string i=y.ToString();
-            survivalTimeText.text = "Ta note: "+i+"/20";
+
+            float note = time / 3f;
+            int score = Mathf.Clamp((int)note, 0, 20);
+            survivalTimeText.text = $"Ta note : {score}/20\nAppuie sur ENTER pour recommencer";
         }
     }
- 
-	
+
+    void RestartMiniGame()
+    {
+        // Сброс состояния игрока
+        isGameOver = false;
+        time = 0f;
+
+        // Сброс позиции и физики
+        transform.position = startPosition;
+        RB.linearVelocity = Vector3.zero;
+        RB.angularVelocity = Vector3.zero;
+
+        // Сброс UI
+        if (survivalTimeText != null)
+        {
+            survivalTimeText.gameObject.SetActive(false);
+        }
+
+        // Сброс генератора шипов
+        if (spikeGenerator != null)
+        {
+            spikeGenerator.Restart();
+        }
+
+        isGrounded = true;
+    }
 }

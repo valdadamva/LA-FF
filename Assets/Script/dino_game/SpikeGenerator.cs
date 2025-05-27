@@ -45,6 +45,26 @@ public class SpikeGenerator : MonoBehaviour
         }
     }
     
+    
+    public void Restart()
+    {
+        // Удаляем все шипы из сцены
+        SpikeScript[] activeSpikes = FindObjectsOfType<SpikeScript>();
+        foreach (SpikeScript spike in activeSpikes)
+        {
+            Destroy(spike.gameObject);
+        }
+
+        // Сбрасываем параметры генерации
+        currentSpeed = minSpeed;
+        tims = 2f;
+        speed_sc = 0f;
+
+        // Генерируем первый шип заново
+        GenerateSpike();
+    }
+
+    
        
     
 }
