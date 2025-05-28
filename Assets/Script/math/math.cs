@@ -280,8 +280,8 @@ public class Game15Puzzle3D : MonoBehaviour
             guiStyle.fontSize = 30;
             guiStyle.normal.textColor = Color.white;
 
-            GUI.Label(new Rect(10, 10, 500, 50), $"Победа! Время: {finalTime:F2} секунд", guiStyle);
-            GUI.Label(new Rect(10, 50, 500, 50), "Нажмите ENTER, чтобы начать заново", guiStyle);
+            GUI.Label(new Rect(10, 10, 500, 50), $"Victory! Time: {finalTime:F2} seconds", guiStyle);
+            GUI.Label(new Rect(10, 50, 500, 50), "Press ENTER to restart", guiStyle);
         }
     }
 
